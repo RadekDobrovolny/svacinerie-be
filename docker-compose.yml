@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8032:8000"
+    volumes:
+      - ./db.sqlite3:/app/db.sqlite3
+    command: ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000"]
